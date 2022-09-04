@@ -5,7 +5,7 @@ import { Image, View } from "react-native";
 import * as Fonts from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 
-import GameWrapper from "./src/screens/GameWrapper";
+import GameNavigator from "./GameNavigator";
 
 import Utils from "./src/common/Utils";
 import { AppColors, Font, Images } from "./src/common/Const";
@@ -47,7 +47,7 @@ const App = () => {
 
   return (
     <>
-      <GameWrapper />
+      <GameNavigator />
       <StatusBar hidden />
     </>
   );

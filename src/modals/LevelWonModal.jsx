@@ -1,3 +1,4 @@
+import { Dimensions } from "react-native";
 import Modal from "react-native-modal";
 import { verticalScale } from "react-native-size-matters";
 
@@ -15,6 +16,7 @@ const LevelWonModal = ({ isVisible }) => {
       backdropTransitionInTiming={600}
       backdropTransitionOutTiming={600}
       statusBarTranslucent
+      deviceHeight={Dimensions.get("screen").height}
       style={{
         justifyContent: "center",
         alignItems: "center",

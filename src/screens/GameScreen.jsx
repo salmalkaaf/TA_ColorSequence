@@ -5,6 +5,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { verticalScale } from "react-native-size-matters";
 
 import Utils from "../common/Utils";
+import { GetLevel, IncreaseLevel } from "../common/GlobalState";
 import { AppColors, Font, SequenceColors } from "../common/Const";
 
 import TryAgainModal from "../modals/TryAgainModal";
@@ -14,7 +15,7 @@ import ColorTile from "../components/ColorTile";
 import IconButton from "../components/IconButton";
 import ColorCircle from "../components/ColorCircle";
 import BackToHomeButton from "../components/BackToHomeButton";
-import { GetLevel, IncreaseLevel } from "../common/GlobalState";
+import ColorSequencePicker from "../components/ColorSequencePicker";
 
 const GameScreen = ({ mode, onGoToHome }) => {
   const { noOfTiles } = mode;
@@ -70,10 +71,6 @@ const GameScreen = ({ mode, onGoToHome }) => {
     });
   };
 
-  const getColorCircles = () => {
-    return SequenceColors.map((c) => <ColorCircle color={c} key={c} />);
-  };
-
   const onColorDragged = (index, color) => {
     const clrs = [...selectedColors];
     clrs[index] = color;
@@ -115,14 +112,17 @@ const GameScreen = ({ mode, onGoToHome }) => {
               Drag the colors to the slots. Then, click Check.
             </Text>
             <View style={styles.colorCircleContainer}>
-              {getColorCircles()}
-              <IconButton
-                icon={"check"}
-                onPress={onPressCheck}
-                size={verticalScale(32)}
-                color={SequenceColors[3]}
-                absolute={false}
-              />
+              <ColorSequencePicker />
+              <View>
+                <IconButton
+                  icon={"check"}
+                  onPress={onPressCheck}
+                  size={verticalScale(32)}
+                  color={SequenceColors[3]}
+                  absolute={false}
+                  style={styles.checkButton}
+                />
+              </View>
             </View>
           </>
         )}
@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     position: "absolute",
     right: 12,
-    top: 12
+    top: 12,
   },
   userTilesContainer: {
     flexDirection: "row",
@@ -173,11 +173,14 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
   },
   colorCircleContainer: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    alignItems: "center",
     marginTop: verticalScale(8),
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
     marginHorizontal: verticalScale(60),
+  },
+  checkButton: {
+    marginLeft: verticalScale(12),
   },
 });
 

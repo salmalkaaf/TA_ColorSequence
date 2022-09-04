@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { Text, View, Dimensions } from "react-native";
 import Modal from "react-native-modal";
 import { verticalScale } from "react-native-size-matters";
 
@@ -16,6 +16,7 @@ const TryAgainModal = ({ isVisible, onPressHome, onPressTryAgain }) => {
       backdropTransitionInTiming={600}
       backdropTransitionOutTiming={600}
       statusBarTranslucent
+      deviceHeight={Dimensions.get("screen").height}
     >
       <View
         style={{
