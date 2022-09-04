@@ -36,6 +36,8 @@ const _GetLevelKeyFromMode = (mode) => {
   return v;
 };
 
+//#region - Getters
+
 export const GetLevel = (mode) => {
   let key = _GetLevelKeyFromMode(mode);
   if (key.length > 0) {
@@ -43,6 +45,10 @@ export const GetLevel = (mode) => {
   }
   return 1;
 };
+
+export const IsSoundEnabled = () => getGlobalState("soundEnabled");
+
+//#endregion
 
 //#region - Cachable Global State
 

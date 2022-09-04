@@ -26,3 +26,9 @@ export const Font = {
 export const Images = {
   Splash: require("../../assets/splash.png"),
 };
+
+export const Sounds = {
+  Tile: require("../../assets/sounds/Tile.wav"),
+  LevelWon: require("../../assets/sounds/LevelWon.wav"),
+  LevelLost: require("../../assets/sounds/LevelLost.wav"),
+};

@@ -4,9 +4,9 @@ import { SequenceColors } from "../common/Const";
 const HelpButton = ({ onPress }) => {
   return (
     <IconButton
-      icon={"help-outline"}
+      icon={"help"}
       onPress={onPress}
-      size={26}
+      size={32}
       color={SequenceColors[5]}
       bottom={12}
       left={12}

@@ -3,17 +3,17 @@ import { View, Text, StyleSheet } from "react-native";
 import { DraxProvider } from "react-native-drax";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { verticalScale } from "react-native-size-matters";
+import { Audio } from "expo-av";
 
 import Utils from "../common/Utils";
-import { GetLevel, IncreaseLevel } from "../common/GlobalState";
-import { AppColors, Font, SequenceColors } from "../common/Const";
+import { GetLevel, IncreaseLevel, IsSoundEnabled } from "../common/GlobalState";
+import { AppColors, Font, SequenceColors, Sounds } from "../common/Const";
 
 import TryAgainModal from "../modals/TryAgainModal";
 import LevelWonModal from "../modals/LevelWonModal";
 
 import ColorTile from "../components/ColorTile";
 import IconButton from "../components/IconButton";
-import ColorCircle from "../components/ColorCircle";
 import BackToHomeButton from "../components/BackToHomeButton";
 import ColorSequencePicker from "../components/ColorSequencePicker";
 
@@ -81,12 +81,20 @@ const GameScreen = ({ mode, onGoToHome }) => {
     setColorsVisible(true);
     const isSameColorSequence = Utils.AreArraysEqual(colors, selectedColors);
     if (isSameColorSequence) {
+      if (IsSoundEnabled()) {
+        const { sound } = await Audio.Sound.createAsync(Sounds.LevelWon);
+        await sound.playAsync();
+      }
       setIsGameWon(true);
       await Utils.Sleep(3);
       IncreaseLevel(mode);
       startLevel();
     } else {
       await Utils.Sleep(1.5);
+      if (IsSoundEnabled()) {
+        const { sound } = await Audio.Sound.createAsync(Sounds.LevelLost);
+        await sound.playAsync();
+      }
       setIsGameLost(true);
     }
   };
