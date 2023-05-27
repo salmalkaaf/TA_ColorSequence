@@ -1,3 +1,4 @@
+import "react-native-reanimated";
 import "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
@@ -10,6 +11,10 @@ import GameNavigator from "./GameNavigator";
 import Utils from "./src/common/Utils";
 import { AppColors, Font, Images } from "./src/common/Const";
 import { LoadLocallyCachedState } from "./src/common/GlobalState";
+
+if (Utils.Is_On_Web()) {
+  window._frameTimestamp = null;
+}
 
 const App = () => {
   const [isReady, setIsReady] = useState(false);
