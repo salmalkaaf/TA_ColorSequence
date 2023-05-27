@@ -11,7 +11,7 @@
     "eject": "expo eject",
     "expo-publish": "expo publish",
     "deploy": "gh-pages -d web-build",
-    "predeploy": "expo build:web"
+    "predeploy": "npx expo export:web"
   },
   "dependencies": {
     "@expo/webpack-config": "^18.0.1",
@@ -36,7 +36,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
-    "@babel/plugin-proposal-export-namespace-from": "^7.18.9"
+    "@babel/plugin-proposal-export-namespace-from": "^7.18.9",
+    "gh-pages": "^5.0.0"
   },
   "private": true
 }
